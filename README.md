@@ -6,9 +6,13 @@ Transform the points or lines of Paper's Figure to Data
 假设我们需要得到test.png中绿色频散曲线的坐标。  
 Support that we need to get the dispersion curves of the green line in test.png  
 使用软件，我们得到txt文件如下：  
-After using this program, we get a txt:  
-<img src="test.png" alt="test.png" width="500" height="400" align=left/>  
-<img src="testtxt.png" alt="testtxt.png" width="100" height="400" align=right/>
+After using this program, we get a txt: 
+<div align=left>  
+<img src="test.png" alt="test.png" width="500" height="400"/>
+</div>  
+<div align=right>  
+<img src="testtxt.png" alt="testtxt.png" width="100" height="400"/>
+</div>  
 
 ## 使用/Usage
 ### Windows
@@ -23,7 +27,7 @@ pip3 install opencv-python  pyqt5
 ### 操作/Operation
 界面如下：  
 You will get a interface：  
-<img src="interface.png" alt="interface.png" style="zooom:70%;" align=center>  
+<img src="interface.png" alt="interface.png" style="zoom:70%;" align=center>  
 1 点击File，打开图片文件，进入image窗口，鼠标左击选取3个基本框架点（显示为绿色），例如图片左上[5,3.9]，左下[5,2.9]，右下[30,2.9]。  
 2 按下CTRL,同时鼠标移动（无需点击）描点（显示为红色点）  
 3  ×掉image窗口（**很重要**）  
