@@ -6,13 +6,8 @@ Transform the points or lines of Paper's Figure to Data
 假设我们需要得到test.png中绿色频散曲线的坐标。  
 Support that we need to get the dispersion curves of the green line in test.png  
 使用软件，我们得到txt文件如下：  
-After using this program, we get a txt: 
-<div align=left>  
-<img src="test.png" alt="test.png" width="500" height="400"/>
-</div>  
-<div align=right>  
-<img src="testtxt.png" alt="testtxt.png" width="100" height="400"/>
-</div>  
+After using this program, we get a txt:  
+<img src="test.png" alt="test.png" width="500" height="400" style="zoom:70%" align=left/><img src="testtxt.png" alt="testtxt.png" width="100" height="400" style="zoom:70%" align=right/>  
 
 ## 使用/Usage
 ### Windows
