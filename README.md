@@ -7,8 +7,8 @@ Transform the points or lines of Paper's Figure to Data
 Support that we need to get the dispersion curves of the green line in test.png  
 使用软件，我们得到txt文件如下：  
 After using this program, we get a txt:  
-<img src="test.png" alt="test.png" style="zooom:70%;" align=left>  
-<img src="testtxt.png" alt="testtxt.png" style="zooom:70%;" align=right>
+<img src="test.png" alt="test.png" style="zoom:70%;" align=left>  
+<img src="testtxt.png" alt="testtxt.png" style="zoom:60%;" align=right>
 
 ## 使用/Usage
 ### Windows
