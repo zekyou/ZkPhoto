@@ -1,13 +1,13 @@
-#import matplotlib.pyplot as plt
-#from PIL import Image
+# import matplotlib.pyplot as plt
+# from PIL import Image
 import cv2
 import os
 from PyQt5 import QtCore, QtGui, QtWidgets
-#from PyQt5.QtCore import pyqtSignal
+# from PyQt5.QtCore import pyqtSignal
 from PyQt5.QtGui import QIcon
-from PyQt5.QtWidgets import  QFileDialog
+from PyQt5.QtWidgets import QFileDialog
 
-#overwrite
+# overwrite
 '''
 class MyLineEdit(QLineEdit):
     clicked = pyqtSignal()
@@ -15,47 +15,56 @@ class MyLineEdit(QLineEdit):
         if QMouseEvent.button() ==Qt.LeftButton:
             self.clicked.emit()
             '''
+
+
 class Photo_Chose(object):
-   def get_Pos(self,photodir):
-       self.img = cv2.imread(photodir)
-       self.a = []
-       self.b = []
-       self.c = []
-       self.d = []
-       cv2.namedWindow("image")
-       cv2.setMouseCallback("image", self.on_EVENT_MOUSE)
-       cv2.imshow("image", self.img)
-       cv2.waitKey(0)
-       return self.a,self.b,self.c,self.d
-   def on_EVENT_MOUSE(self,event, x, y, flags, param):
-       if flags == cv2.EVENT_FLAG_CTRLKEY:
-           xy = "%d,%d" % (x, y)
-           self.a.append(x)
-           self.b.append(y)
-           cv2.circle(self.img, (x, y), 1, (0, 0, 255), thickness=-1)
-           cv2.imshow("image", self.img)
-       elif event==cv2.EVENT_LBUTTONDOWN:
-           xy = '%d,%d' % (x,y)
-           self.c.append(x)
-           self.d.append(y)
-           cv2.circle(self.img,(x,y),2,(0,255,0), thickness=-1)
-           cv2.imshow('image',self.img)
-       elif event ==cv2.EVENT_RBUTTONDOWN:
-           try:
-               cre = self.c.pop()
-               dre = self.d.pop()
-               cv2.circle(self.img, (cre,dre), 2,(255,99,71), thickness=-1)
-               cv2.imshow('image',self.img)
-           except:
-               print('Error in cancelling chosen point')
-       elif flags ==cv2.EVENT_FLAG_ALTKEY:
-           try:
-               are = self.a.pop()
-               bre = self.b.pop()
-               cv2.circle(self.img, (are,bre), 1,(255,218,185), thickness=-1)
-               cv2.imshow('image',self.img)
-           except:
-               print('Error in cancelling chosen point')
+    # a is drawing x
+    # b is drawing y
+    # c is click x
+    # d si click y
+    def get_Pos(self, photodir):
+        self.img = cv2.imread(photodir)
+        self.a = []
+        self.b = []
+        self.c = []
+        self.d = []
+        cv2.namedWindow("image")
+        cv2.setMouseCallback("image", self.on_EVENT_MOUSE)
+        cv2.imshow("image", self.img)
+        cv2.waitKey(0)
+        return self.a, self.b, self.c, self.d
+
+    def on_EVENT_MOUSE(self, event, x, y, flags, param):
+        if flags == cv2.EVENT_FLAG_CTRLKEY:
+            xy = "%d,%d" % (x, y)
+            self.a.append(x)
+            self.b.append(y)
+            cv2.circle(self.img, (x, y), 1, (0, 0, 255), thickness=-1)
+            cv2.imshow("image", self.img)
+        elif event == cv2.EVENT_LBUTTONDOWN:
+            xy = '%d,%d' % (x, y)
+            self.c.append(x)
+            self.d.append(y)
+            cv2.circle(self.img, (x, y), 2, (0, 255, 0), thickness=-1)
+            cv2.imshow('image', self.img)
+        elif event == cv2.EVENT_RBUTTONDOWN:
+            try:
+                cre = self.c.pop()
+                dre = self.d.pop()
+                cv2.circle(self.img, (cre, dre), 2, (255, 99, 71), thickness=-1)
+                cv2.imshow('image', self.img)
+            except:
+                print('Error in cancelling chosen point')
+        elif flags == cv2.EVENT_FLAG_ALTKEY:
+            try:
+                are = self.a.pop()
+                bre = self.b.pop()
+                cv2.circle(self.img, (are, bre), 1, (255, 218, 185), thickness=-1)
+                cv2.imshow('image', self.img)
+            except:
+                print('Error in cancelling chosen point')
+
+
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
@@ -389,12 +398,14 @@ class Ui_MainWindow(object):
         self.shortCut()
         self.styles()
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
+
     def styles(self):
         mainWindow.setWindowIcon(QIcon('main.ico'))
         mainWindow.setStyleSheet('QMainWindow{border-image:url(bg1.png);}')
         self.pushButton.setStyleSheet('border-radius:10px;border-image:url(go.jpg)')
         self.pushButton_2.setStyleSheet('border-radius:4px;border: 2px solid orange; background:rgb(64,224,208)')
-        self.textBrowser.setStyleSheet('border:2px solid pink;border-radius:10px;padding:2px 4px;background:rgba(171,130,255,0.8)')
+        self.textBrowser.setStyleSheet(
+            'border:2px solid pink;border-radius:10px;padding:2px 4px;background:rgba(171,130,255,0.8)')
         linestyl = 'border:5px solid orange; border-radius:20px;padding: 2px 4px;background:rgba(250,128,114,0.7)'
         statusstyl = 'border-radius:5px;background:rgb(171,130,255)'
         labelhdstyl = 'border: 2px solid pink;border-radius:4px; background:rgba(255,218,185,0.8)'
@@ -414,6 +425,7 @@ class Ui_MainWindow(object):
         self.lineEdit_3.setStyleSheet(linestyl)
         self.lineEdit_4.setStyleSheet(linestyl)
         self.statusbar.setStyleSheet(statusstyl)
+
     def menuappendix(self):
         self.actionAuthor = QtWidgets.QAction(mainWindow)
         self.menuShortcut = QtWidgets.QMenu(mainWindow)
@@ -437,9 +449,11 @@ class Ui_MainWindow(object):
         self.menuShortcut.addAction(self.actionSc3)
         self.menuShortcut.addAction(self.actionSc4)
         self.menuShortcut.addAction(self.actionSc5)
+
     def action_author(self):
         import webbrowser
         webbrowser.open('https://zekyou.github.io')
+
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "ZkPhoto"))
@@ -450,9 +464,9 @@ class Ui_MainWindow(object):
         self.radioButton.setText(_translate("MainWindow", "Specify Point\n"
                                                           "(Start Inc End)"))
         self.pushButton.setText(_translate("MainWindow", ""))
-    #    self.lineEdit.setText(_translate("MainWindow", "Start Increment End"))
-        self.lineEdit_3.setText(_translate('MainWindow','Not Used'))
-        self.lineEdit_4.setText(_translate('MainWindow','Not Used'))
+        #    self.lineEdit.setText(_translate("MainWindow", "Start Increment End"))
+        self.lineEdit_3.setText(_translate('MainWindow', 'Not Used'))
+        self.lineEdit_4.setText(_translate('MainWindow', 'Not Used'))
         self.label_6.setText(_translate("MainWindow", "OPTION"))
         self.label_8.setText(_translate("MainWindow", "Projection"))
         self.checkBox.setText(_translate("MainWindow", "Filter"))
@@ -468,117 +482,151 @@ class Ui_MainWindow(object):
         self.menuAbout.setTitle(_translate("MainWindow", "About"))
         self.menuHelp.setTitle(_translate("MainWindow", "Help"))
         self.actionOpen.setText(_translate("MainWindow", "Open"))
-        self.actionAuthor.setText(_translate('MainWindow','Author'))
-        self.menuShortcut.setTitle(_translate('MainWindow','Shortcuts'))
-        self.actionSc1.setText(_translate('MainWindow','OpenFile(ctrl+o)'))
-        self.actionSc2.setText(_translate('MainWindow','GO/Statr(ctrl+g)'))
-        self.actionSc3.setText(_translate('MainWindow','UsingFilter(ctrl+f)'))
-        self.actionSc4.setText(_translate('MainWindow','ChooseAllPoint(alt+a)'))
-        self.actionSc5.setText(_translate('MainWindow','ChooseSpePoint(alt+s)'))
+        self.actionAuthor.setText(_translate('MainWindow', 'Author'))
+        self.menuShortcut.setTitle(_translate('MainWindow', 'Shortcuts'))
+        self.actionSc1.setText(_translate('MainWindow', 'OpenFile(ctrl+o)'))
+        self.actionSc2.setText(_translate('MainWindow', 'GO/Statr(ctrl+g)'))
+        self.actionSc3.setText(_translate('MainWindow', 'UsingFilter(ctrl+f)'))
+        self.actionSc4.setText(_translate('MainWindow', 'ChooseAllPoint(alt+a)'))
+        self.actionSc5.setText(_translate('MainWindow', 'ChooseSpePoint(alt+s)'))
+
     def shortCut(self):
         self.actionOpen.setShortcut('ctrl+o')
         self.pushButton.setShortcut('ctrl+g')
         self.pushButton_2.setShortcut('ctrl+f')
         self.radioButton.setShortcut('alt+s')
         self.radioButton_2.setShortcut('alt+a')
+
     def links(self):
         self.pushButton.clicked.connect(self.calcu)
         self.pushButton_2.clicked.connect(self.openSP)
         self.actionOpen.triggered.connect(self.openImg)
+
     def clearTips(self):
         self.lineEdit.setText('')
+
     def openSP(self):
         pass
+
     def openImg(self):
-        global plotpx,plotpy,basicx,basicy
-        plotpx = [];plotpy = []; basicx = []; basicy = []
+        global plotpx, plotpy, basicx, basicy
+        plotpx = []
+        plotpy = []
+        basicx = []
+        basicy = []
         try:
-            fname,_ = QFileDialog.getOpenFileName(None,'Select Picture',os.getcwd(),'All Files(*);;Photo Files(*.png)','Photo Files(*.png)')
+            fname, _ = QFileDialog.getOpenFileName(None, 'Select Picture', os.getcwd(),
+                                                   'All Files(*);;Photo Files(*.png)', 'Photo Files(*.png)')
             pChose = Photo_Chose()
             self.textBrowser.setText(fname)
-            plotpx,plotpy,basicx,basicy = pChose.get_Pos(fname)
+            plotpx, plotpy, basicx, basicy = pChose.get_Pos(fname)
         except:
-            self.statusbar.showMessage('Invalid Picture File',1000)
-    def getypixel(self,xpixel):
-        for i in range(len(plotpx)-1):
-            flag = (xpixel-plotpx[i])*(xpixel-plotpx[i+1])
-            if flag<=0:
-                ypixel = (plotpy[i]+plotpy[i+1])/2
+            self.statusbar.showMessage('Invalid Picture File', 1000)
+
+    def getypixel(self, xpixel):
+        for i in range(len(plotpx) - 1):
+            flag = (xpixel - plotpx[i]) * (xpixel - plotpx[i + 1])
+            if flag <= 0:
+                ypixel = (plotpy[i] + plotpy[i + 1]) / 2
                 return ypixel
                 break
             else:
                 continue
-    def writetxt(self,spex,spey):
+
+    def writetxt(self, spex, spey):
         dir = self.textBrowser.toPlainText()
-        txtdir = os.path.splitext(dir)[0]+'.txt'
-        ftxt = open(txtdir,'w')
+        txtdir = os.path.splitext(dir)[0] + '.txt'
+        ftxt = open(txtdir, 'w')
         for i in range(len(spex)):
-            txtline = str(round(spex[i],4))+'\t'+str(round(spey[i],4))+'\n'
+            txtline = str(round(spex[i], 4)) + '\t' + str(round(spey[i], 4)) + '\n'
             ftxt.write(txtline)
         ftxt.close()
+
     def calcu(self):
         try:
-            bposx,bposy = self.basicPos()
-            xinc = (basicx[2] - basicx[1]) / (bposx[2] - bposx[1])
-            yinc = (basicy[1] - basicy[0]) / (bposy[1] - bposy[0])
+            bposx, bposy = self.basicPos()
+            # modified v1.2
+            for i in range(3):
+                if bposy[i] - bposy[0] == 0:
+                    continue
+                else:
+                    yinc = (basicy[i] - basicy[0]) / (bposy[i] - bposy[0])
+                    break
+            for i in range(3):
+                if bposx[i] - bposx[0] == 0:
+                    continue
+                else:
+                    xinc = (basicx[i] - basicx[0]) / (bposx[i] - bposx[0])
+                    break
         except:
-            self.statusbar.showMessage('Invalid Basic Position',700)
+            self.statusbar.showMessage('Invalid Basic Position', 700)
         self.filter()
         self.projection()
-        try:
-            spex = self.pointType()
-        except:
-            self.statusbar.showMessage('Invalid Input of Specified Point',1000)
-        spey = []
-    #    xinc = (bposx[2]-bposx[1])/(basicx[2]-basicx[1])
-    #    yinc = (bposy[1]-bposy[0])/(basicy[1]-basicy[0])
+        if self.radioButton.isChecked():
+            try:
+                spex = self.pointType()
+            except:
+                self.statusbar.showMessage('Invalid Input of Specified Point', 1000)
+            spey = []
+            #    xinc = (bposx[2]-bposx[1])/(basicx[2]-basicx[1])
+            #    yinc = (bposy[1]-bposy[0])/(basicy[1]-basicy[0])
 
+            try:
+                for i in range(len(spex)):
+                    xpixel = (spex[i] - bposx[1]) * xinc + basicx[1]
+                    ypixel = self.getypixel(xpixel)
+                    spey.append((ypixel - basicy[1]) / yinc + bposy[1])
+            except:
+                self.statusbar.showMessage('Error in calculating position. Ploting Window may not be closed', 2000)
+        elif self.radioButton_2.isChecked():
+            spex = []
+            spey = []
+            for i in range(len(plotpx)):
+                spex.append(bposx[0] + (plotpx[i] - basicx[0]) / xinc)
+                spey.append(bposy[0] + (plotpy[i] - basicy[0]) / yinc)
         try:
-            for i in range(len(spex)):
-                xpixel = (spex[i]-bposx[1])*xinc +basicx[1]
-                ypixel = self.getypixel(xpixel)
-                spey.append((ypixel-basicy[1])/yinc + bposy[1])
+            self.writetxt(spex, spey)
+            self.statusbar.showMessage('Write txt successfully!', 1000)
         except:
-            self.statusbar.showMessage('Error in calculating position. Ploting Window may not be closed',2000)
-        try:
-            self.writetxt(spex,spey)
-            self.statusbar.showMessage('Write txt successfully!',1000)
-        except:
-            self.statusbar.showMessage('Error at writing txt',500)
+            self.statusbar.showMessage('Error at writing txt', 500)
+
     def basicPos(self):
         bpos = self.lineEdit_2.text()
-        bpos = list(map(float,bpos.split()))
-        bposx = bpos[::2];bposy = bpos[1::2]
-        return bposx,bposy
+        bpos = list(map(float, bpos.split()))
+        bposx = bpos[::2];
+        bposy = bpos[1::2]
+        return bposx, bposy
+
     def filter(self):
         if self.checkBox.isChecked():
             pass
+
     def projection(self):
         if self.comboBox.currentIndex() == 1:
             pass
         elif self.comboBox.currentIndex() == 2:
             pass
+
     def pointType(self):
         if self.radioButton.isChecked():
             spe_point = self.lineEdit.text()
-            spe_point = list(map(float,spe_point.split()))
-            if spe_point[2]<spe_point[0]:
-                self.statusbar.showMessage('Invalid Start and End point',1000)
+            spe_point = list(map(float, spe_point.split()))
+            if spe_point[2] < spe_point[0]:
+                self.statusbar.showMessage('Invalid Start and End point', 1000)
             else:
-                i=0
+                i = 0
                 spex = [spe_point[0]]
-                while (spex[-1]<spe_point[2]):
-                    spex.append(spe_point[0]+spe_point[1]*(i+1))
-                    i=i+1
+                while (spex[-1] < spe_point[2]):
+                    spex.append(spe_point[0] + spe_point[1] * (i + 1))
+                    i = i + 1
                 return spex
         else:
             pass
 
 
-
-
 if __name__ == '__main__':
     import sys
+
     app = QtWidgets.QApplication(sys.argv)
     mainWindow = QtWidgets.QMainWindow()
     ui = Ui_MainWindow()
