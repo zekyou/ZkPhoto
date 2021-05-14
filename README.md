@@ -1,12 +1,12 @@
-# ZkPhoto
+# ZkPhoto V1.2
 论文等图片的线条、点坐标转换  
 Transform the points or lines of Paper's Figure to Data  
 有时候一些论文只有图，而我们需要绘制这些图的数据，例如曲线的坐标，断层的参数等，可以使用该程序，描点获取数据。  
 ## 示例/Example
 假设我们需要得到test.png中绿色频散曲线的坐标。  
-Support that we need to get the dispersion curves of the green line in test.png  
+Support that we need to get the dispersion curves of the green line below 
 使用软件，我们得到txt文件如下：  
-After using this program, we get a txt:  
+While exploiting this program, we get a txt:  
 <img src="test.png" alt="test.png" width="500" height="400" style="zoom:70%" align=left/><img src="testtxt.png" alt="testtxt.png" width="100" height="400" style="zoom:70%" align=right/>  
 
 ## 使用/Usage
@@ -26,7 +26,7 @@ You will get a interface：
 1 点击File，打开图片文件，进入image窗口，鼠标左击选取3个基本框架点（显示为绿色），例如图片左上[5,3.9]，左下[5,2.9]，右下[30,2.9]。  
 2 按下CTRL,同时鼠标移动（无需点击）描点（显示为红色点）  
 3  ×掉image窗口（**很重要**）  
-4 在BasicPosition的1号栏按顺序输入基本框架的**真实坐标**，如 5 3.9 5,2.9 30 2.9  x1,y1,x2... 中间**空格隔开**。在Operate栏输入想要获取的坐标x，格式为 开始x 间隔 结束x 例如 7 1 15（需要在描点范围内，或许后续版本会解除这一限定）  
+4 在BasicPosition的1号栏按顺序输入基本框架的**真实坐标**，如 5 3.9 5,2.9 30 2.9  x1,y1,x2... 中间**空格隔开**。选择取点方式，1.全选 2.等x间距取点：在Operate栏输入想要获取的坐标x，格式为 开始x 间隔 结束x 例如 7 1 15（需要在描点范围内，或许后续版本会解除这一限定）  
 5 点击开始按钮  
 
 1 Click File, choose your figure. You will enter the 'image' window, and left-click to select three basic frame points (shown in green), such as the top left of the picture, the lower left, and the lower right.   
